@@ -1,28 +1,25 @@
-name: CI Pipeline
+name: Test on Feature Branches
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
     branches:
-      - main
+      - 'feature/*'
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
+      - uses: actions/checkout@v4
+      - name: Merge develop into feature branch
+        run: |
+          git fetch origin
+          git checkout develop
+          git pull origin develop
+          git checkout -
+          git merge develop || git merge --abort
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
           node-version: '16'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
+      - run: npm install
+      - run: npm test

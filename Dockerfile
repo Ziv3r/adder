@@ -17,8 +17,5 @@ RUN npm run build
 # Expose the port the app runs on
 EXPOSE 3000
 
-# Set environment variables
-ENV REDIS_URL redis://localhost:6379
-
 # Command to run the application
 CMD ["node", "dist/index.js"]
