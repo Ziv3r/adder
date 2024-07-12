@@ -7,7 +7,7 @@ const jokes = ["Chuck Norris doesn't read books. He stares them down until he ge
 app.get('/jokes', (req: Request, res: Response) => {
     try {
         let joke = jokes[Math.floor(Math.random()*jokes.length)];
-        res.status(200).send({joke: joke});
+        res.status(200).send({jokes: joke});
     } catch (err) {
         console.error('Redis error:', err);
         res.status(500).send('Error 1fetching joke');
