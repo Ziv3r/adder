@@ -16,6 +16,6 @@ describe('GET /jokes', () => {
     it('should return a joke', async () => {
         const res = await request(app).get('/jokes');
         expect(res.status).toEqual(200);
-        expect(res.body).toHaveProperty('joke');
+        expect(res.body).toHaveProperty('jokes');
     });
 });
